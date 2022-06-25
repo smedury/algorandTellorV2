@@ -25,8 +25,8 @@ def deploy(query_id: str, query_data: str, timestamp_freshness: int, network: st
 
     load_dotenv()
 
-    algo_address = "http://localhost:4001"
-    algo_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    algo_address = "http://testnet-api.algonode.network"
+    algo_token = ""
 
     client = AlgodClient(algod_address=algo_address, algod_token=algo_token)
 

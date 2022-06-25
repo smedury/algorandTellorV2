@@ -6,8 +6,8 @@ from algosdk.v2client.algod import AlgodClient
 
 from src.utils.account import Account
 
-ALGOD_ADDRESS = "http://localhost:4001"
-ALGOD_TOKEN = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+ALGOD_ADDRESS = "http://testnet-api.algonode.network"
+ALGOD_TOKEN = ""
 
 
 def getAlgodClient() -> AlgodClient:

@@ -2,7 +2,7 @@
 network: testnet
 error_waittime: 20
 receipt_timeout: 60
-governance_address: P5UYSDZJWCOXG6T37XPDMDHGSCJXCNA3X7HBKYSKD5K6TWRPR5Y62PJG5Y
+governance_address: GJIMJ3PIFZ53MBGSMNUJLC4OBEHVPX3ILLJKCMSZWUOG5VRGD57U5V65S4
 
 #query IDs, their repsective price pairs/feeds/labels, and the networks they're live on
 feeds:
@@ -18,12 +18,21 @@ feeds:
   BTCUSD:
     app_ids:
       medianizer:
-        testnet: 87293591
+        testnet: 96023001
         mainnet: 728084397
       feeds:
         curr_index: 1
-        testnet: [87293472, 87293482, 87293548, 87293566, 87293580]
+        testnet: [96022916, 96022925, 96022948, 96022961, 96022977]
         mainnet: [728083191, 728083383, 728083685, 728083922, 728084113]
+  ALGOUSD:
+    app_ids:
+      medianizer:
+        testnet: 97006200
+        mainnet: 
+      feeds:
+        curr_index: 1
+        testnet: [97006115, 97006130, 97006156, 97006172, 97006186]
+        mainnet: 
   random_int:
     requestId: 4
     networks:
@@ -54,11 +63,6 @@ apis:
       keywords:
         - bitcoin
         - usd
-    bittrex:
-      url: https://api.bittrex.com/api/v1.1/public/getticker?market=USD-BTC
-      keywords:
-        - result
-        - Last
     gemini:
       url: https://api.gemini.com/v1/pubticker/btcusd
       keywords:
@@ -70,6 +74,34 @@ apis:
         - TBTCUSD
         - c
         - 0
+
+  ALGOUSD:
+    coinbase:
+      url: https://api.pro.coinbase.com/products/ALGO-USD/ticker
+      keywords:
+        - price
+    coingecko:
+      url: https://api.coingecko.com/api/v3/simple/price?ids=algorand&vs_currencies=usd
+      keywords:
+        - algorand
+        - usd
+    kraken:
+      url: https://api.kraken.com/0/public/Ticker?pair=ALGOUSD
+      keywords:
+        - result
+        - ALGOUSD
+        - c
+        - 0
+    kucoin:
+      url: https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ALGO-USDC
+      keywords:
+        - data
+        - price
+    wazirx:
+      url: https://api.wazirx.com/sapi/v1/ticker/24hr?symbol=algousdt
+      keywords:
+        - lastPrice
+
   WBTCUSD:
     coinbase:
       url: https://api.pro.coinbase.com/products/WBTC-USD/ticker

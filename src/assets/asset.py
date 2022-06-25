@@ -27,7 +27,7 @@ class Asset:
 
     def update_price(self):
         self.timestamp = int(time.time())
-        self.price = int(self.medianize())
+        self.price = float(self.medianize())
 
     def medianize(self):
         """
@@ -40,10 +40,18 @@ class Asset:
 
         for source in self.sources.keys():
             price = self.fetch_price_from_sources(self.sources[source])
+            print("------------------------------------------------------------")
+            print("Sources: {}, and Price: {} \n".format(self.sources, price))
+            print("------------------------------------------------------------")
             final_results.append(price)
 
         # sort final results
         final_results.sort()
+
+        print("------------------------------------------------------------")
+        print("DEBUG: Final results: {} \n".format(final_results))
+        print("------------------------------------------------------------")
+
         return final_results[len(final_results) // 2]
 
     def fetch_price_from_sources(self, source: Dict) -> int:
@@ -56,12 +64,13 @@ class Asset:
         # Request JSON from public api endpoint
         rsp = requests.get(source["url"]).json()
 
+
         # Parse through json with pre-written keywords
         for keyword in source["keywords"]:
             rsp = rsp[keyword]
 
         # return price (last remaining element of the json)
-        return int(float(rsp))
+        return float(rsp)
 
     def __str__(self):
         return f"""Asset: {self.name} query_id: {self.query_id} price: {self.price} timestamp: {self.timestamp}"""

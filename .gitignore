@@ -129,3 +129,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# temp files
+*.tmp
+
+# ANS temp files
+*ans_*
+*mysecrets.py
+
+# Venv
+tellorv2/

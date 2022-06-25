@@ -1,4 +1,6 @@
 import os
+from sqlite3 import Timestamp
+import struct
 import sys
 from time import time
 from typing import Dict
@@ -24,8 +26,8 @@ def report(
     asset.update_price()
     value = asset.price
 
-    algo_address = "http://localhost:4001"
-    algo_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    algo_address = "http://testnet-api.algonode.network"
+    algo_token = ""
 
     client = AlgodClient(algod_address=algo_address, algod_token=algo_token)
 
@@ -44,7 +46,10 @@ def report(
         feed_app_id=app_id,
     )
     s.feeds = feed_ids
-    s.report(query_id=query_id, value=value, timestamp=int(time() - 50))
+    print("------------------------------------------------------------")
+    print("DEBUG: Query ID: {}, Value: {}, and Timestamp: {} \n".format(query_id, str(value), int(time()-50)))
+    print("------------------------------------------------------------")
+    s.report(query_id=query_id, value=bytearray(struct.pack("f",value)), timestamp=int(time() - 50))
 
     print(f"submitted value '{value}' to query id '{query_id}'")
     # print(f"algo explorer link: {}")
